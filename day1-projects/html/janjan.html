@@ -1,0 +1,72 @@
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width">
+<script src="js/jquery-2.1.3.min.js"></script>
+<link rel="stylesheet" href="css/sample.css">
+<title>じゃんけん</title>
+</head>
+<body>
+
+<header>
+  <h1>ドローンじゃんけん</h1>
+  <h2>勝ったら鳥取の空、飛びます✈️</h2>
+  <h3>~勝ち札に応じて見える高さが変わるよ~</h3>
+  <img src="./prg画像/トップ.jpeg" width="50%">
+</header>
+<head>
+    <script>
+        
+    function R_Click(p_janken_r) {
+        let janken = ['グー','チョキ','パー',];
+        let janken_r = Math.floor( Math.random() * 3);
+
+        let p_janken = ['グー','チョキ','パー'];
+
+            
+            if (janken_r == p_janken_r) {
+                Result_end = "あいこです";
+            } else if(p_janken_r === 0 && janken_r === 1) {
+                Result_end = "あなたの【勝ち】";
+            }else if(p_janken_r === 1 && janken_r === 2) {
+                Result_end = "あなたの【勝ち】";
+            }else if(p_janken_r === 2 && janken_r === 0) {
+                Result_end = "あなたの【勝ち】";
+            }else {
+                Result_end = "あなたの【負け】";
+            }
+
+    
+
+            //結果
+            document.getElementById("jankenpon").src="jan" + janken_r + ".png";
+            document.getElementById("Rejan1").innerHTML = p_janken[p_janken_r] +"を選択しました。ジャンケンの結果は・・・？";
+            document.getElementById("Rejan2").innerHTML = "相手は" + janken[janken_r] + Result_end;
+  document.getElementById("jankenpon2").src="jan" + p_janken_r + ".png";
+        }
+
+    
+
+    </script>
+</head>
+<body>
+    <p><img id="jankenpon" src="./jan/jan.png" width="100" height="100"></p>
+    <button onclick="R_Click(0);"> グー</button>
+    <button onclick="R_Click(1);"> チョキ</button>
+    <button onclick="R_Click(2);"> パー</button>
+    <br />
+    
+    <p></p>
+   <p></p> <font size="1">下記パイロット管理用</a>
+        <p></p>
+    <a href="https://drive.google.com/file/d/1LxKHJB-17ZZbdk_y_s78x-92qamGrVUR/view?usp=sharing">0m</a>
+    <a href="https://drive.google.com/file/d/1aC10a21QjZIsiILNrRHFa0KVOuSy2eJ-/view?usp=sharing">5m</a>
+    <a href="https://drive.google.com/file/d/1TSjbCC-MHnzTwIUU--GEApDOY3Ti7J8m/view?usp=sharing">50m</a>
+    <a href="https://drive.google.com/file/d/1ngu92mlcJsa1irXyDw9mDuflvksZWriD/view?usp=sharing">500m</a>
+    <a href="https://drive.google.com/file/d/1oYFZGQf4h3KDytoGVkODjh_HcGWW6yff/view?usp=sharing">1000m</a>
+   
+
+    <div id="Rejan1"></div>
+    <div id="Rejan2"></div>
+</body>
+</html>

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Unique Date Time Generator</title>
+</head>
+<body>
+    <h1>📅日程決める君📅</h1>
+    <ul id="datesList"></ul>
+    <button id="addDateButton">Generate Date</button>
+    <div id="result"></div>
+
+    <script>
+    
+    function getRandomWeekdayDateTimeFromTwoWeeksToTwoMonths(displayedDates) {
+    let date, formattedDateTime, hour, attempts = 0;
+
+    const twoWeeksLater = new Date();
+    twoWeeksLater.setDate(twoWeeksLater.getDate() + 14);
+    const twoMonthsLater = new Date();
+    twoMonthsLater.setMonth(twoMonthsLater.getMonth() + 2);
+
+    do {
+        date = new Date(twoWeeksLater.getTime() + Math.random() * (twoMonthsLater.getTime() - twoWeeksLater.getTime()));
+        hour = 14 + Math.floor(Math.random() * 5);
+        date.setHours(hour);
+        date.setMinutes(0);
+        formattedDateTime = date.getFullYear() + '/' + 
+                            ('0' + (date.getMonth() + 1)).slice(-2) + '/' + 
+                            ('0' + date.getDate()).slice(-2) + ' ' +
+                            ('0' + date.getHours()).slice(-2) + ':00';
+        
+       
+        if (++attempts > 1000) {
+            console.error('Too many attempts to find a valid date and time.');
+            return null;
+        }
+    } while (date.getDay() === 0 || date.getDay() === 6 || displayedDates.includes(formattedDateTime));
+
+    displayedDates.push(formattedDateTime);
+    return formattedDateTime;
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+    const displayedDates = [];
+
+    function addDate() {
+        const result = getRandomWeekdayDateTimeFromTwoWeeksToTwoMonths(displayedDates);
+        if (result) {
+            const listItem = document.createElement('li');
+            const checkbox = document.createElement('input');
+            checkbox.type = 'checkbox';
+            checkbox.id = result;
+            checkbox.name = 'dates';
+            checkbox.value = result;
+
+            const label = document.createElement('label');
+            label.htmlFor = result;
+            label.appendChild(document.createTextNode(result));
+
+            listItem.appendChild(checkbox);
+            listItem.appendChild(label);
+            document.getElementById('datesList').appendChild(listItem);
+        } else {
+            document.getElementById('result').textContent = 'Unique date and time could not be generated or no more dates available.';
+        }
+    }
+
+    document.getElementById('addDateButton').addEventListener('click', addDate);
+});
+
+    </script>
+</body>
+</html>

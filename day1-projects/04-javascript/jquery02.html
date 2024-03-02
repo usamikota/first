@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jQuery練習</title>
+    <script src="./js/jquery-3.5.1.min.js"></script>
+</head>
+<body>
+    <button id="button">クリックしてね</button>
+<script>
+
+    $("#button").on("click", function(){
+        alert("クリック！");
+        $("#button").text("クリック済み!");
+    })
+
+
+    let score =30;     
+    //                                                                  
+if(score >= 80){
+    console.log("A判定");
+}else if(score >= 30) 
+{console.log("B判定");
+}else {
+    console.log("C判定");
+}
+
+
+</script>
+</body>
+</html>
